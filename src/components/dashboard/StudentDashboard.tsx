@@ -2,54 +2,13 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { BookOpen, Brain, HelpCircle, Calendar, Award, TrendingUp, Clock, CheckCircle } from 'lucide-react';
+import { BookOpen, Brain, HelpCircle, Calendar, GraduationCap } from 'lucide-react';
 import FlashcardViewer from '@/components/student/FlashcardViewer';
 import QuizInterface from '@/components/student/QuizInterface';
 import StudyMaterials from '@/components/student/StudyMaterials';
 
 const StudentDashboard = () => {
   const [activeView, setActiveView] = useState<'overview' | 'flashcards' | 'quiz' | 'materials'>('overview');
-
-  const stats = [
-    { label: 'Lectures Studied', value: '18', icon: BookOpen, color: 'text-blue-600' },
-    { label: 'Flashcards Reviewed', value: '247', icon: Brain, color: 'text-green-600' },
-    { label: 'Quizzes Completed', value: '12', icon: HelpCircle, color: 'text-purple-600' },
-    { label: 'Average Score', value: '85%', icon: Award, color: 'text-orange-600' },
-  ];
-
-  const recentLectures = [
-    {
-      id: 1,
-      subject: 'Data Structures',
-      topic: 'Binary Trees - Traversal Methods',
-      date: '2024-01-15',
-      completed: true,
-      score: 92
-    },
-    {
-      id: 2,
-      subject: 'Algorithms',
-      topic: 'Sorting Algorithms Comparison',
-      date: '2024-01-14',
-      completed: true,
-      score: 88
-    },
-    {
-      id: 3,
-      subject: 'Database Systems',
-      topic: 'SQL Joins and Relationships',
-      date: '2024-01-13',
-      completed: false,
-      score: null
-    }
-  ];
-
-  const upcomingTasks = [
-    { task: 'Review Binary Tree concepts', due: 'Today', priority: 'high' },
-    { task: 'Complete SQL Quiz', due: 'Tomorrow', priority: 'medium' },
-    { task: 'Study Sorting Algorithms', due: 'Jan 18', priority: 'low' }
-  ];
 
   if (activeView === 'flashcards') {
     return <FlashcardViewer onBack={() => setActiveView('overview')} />;
@@ -70,22 +29,20 @@ const StudentDashboard = () => {
         <p className="text-gray-600">Access your AI-generated study materials and track progress</p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {stats.map((stat, index) => (
-          <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
-                </div>
-                <stat.icon className={`w-8 h-8 ${stat.color}`} />
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {/* Welcome Card for New Students */}
+      <Card className="mb-8 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
+        <CardContent className="p-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Welcome to Your Learning Journey!</h3>
+              <p className="text-gray-600">Your study materials will appear here once your faculty starts uploading lectures.</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -113,7 +70,7 @@ const StudentDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Lectures */}
+        {/* Recent Lectures - Empty State */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -122,37 +79,18 @@ const StudentDashboard = () => {
             </CardTitle>
             <CardDescription>Your latest study materials</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentLectures.map((lecture) => (
-                <div key={lecture.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="font-medium text-sm">{lecture.topic}</h4>
-                      {lecture.completed && (
-                        <CheckCircle className="w-4 h-4 text-green-600" />
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-gray-600">
-                      <span>{lecture.subject}</span>
-                      <span>{lecture.date}</span>
-                      {lecture.score && (
-                        <Badge variant="secondary" className="text-xs">
-                          {lecture.score}%
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                  <Button size="sm" variant="outline">
-                    {lecture.completed ? 'Review' : 'Start'}
-                  </Button>
-                </div>
-              ))}
+          <CardContent className="py-12">
+            <div className="text-center">
+              <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No Lectures Yet</h3>
+              <p className="text-gray-500">
+                Lectures will appear here once your faculty starts uploading content.
+              </p>
             </div>
           </CardContent>
         </Card>
 
-        {/* Upcoming Tasks */}
+        {/* Study Plan - Empty State */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -161,28 +99,13 @@ const StudentDashboard = () => {
             </CardTitle>
             <CardDescription>AI-recommended tasks for this week</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {upcomingTasks.map((task, index) => (
-                <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">{task.task}</p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <Clock className="w-3 h-3 text-gray-500" />
-                      <span className="text-xs text-gray-600">{task.due}</span>
-                      <Badge 
-                        variant={task.priority === 'high' ? 'destructive' : task.priority === 'medium' ? 'default' : 'secondary'}
-                        className="text-xs"
-                      >
-                        {task.priority}
-                      </Badge>
-                    </div>
-                  </div>
-                  <Button size="sm" variant="ghost">
-                    <CheckCircle className="w-4 h-4" />
-                  </Button>
-                </div>
-              ))}
+          <CardContent className="py-12">
+            <div className="text-center">
+              <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No Study Plan Yet</h3>
+              <p className="text-gray-500">
+                Your personalized study plan will be generated based on your learning progress.
+              </p>
             </div>
           </CardContent>
         </Card>

@@ -2,20 +2,12 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Mic, Upload, FileText, Brain, Share2, BarChart3, BookOpen, Users, Clock } from 'lucide-react';
+import { Mic, Brain, BarChart3, Upload, FileText } from 'lucide-react';
 import AudioRecorder from '@/components/faculty/AudioRecorder';
 import ContentGenerator from '@/components/faculty/ContentGenerator';
 
 const FacultyDashboard = () => {
   const [activeTab, setActiveTab] = useState<'record' | 'generate' | 'analytics'>('record');
-
-  const stats = [
-    { label: 'Lectures Recorded', value: '24', icon: Mic, color: 'text-blue-600' },
-    { label: 'Materials Generated', value: '48', icon: FileText, color: 'text-green-600' },
-    { label: 'Students Reached', value: '156', icon: Users, color: 'text-purple-600' },
-    { label: 'Avg. Quiz Score', value: '78%', icon: BarChart3, color: 'text-orange-600' },
-  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,22 +16,20 @@ const FacultyDashboard = () => {
         <p className="text-gray-600">Create and share AI-powered learning materials</p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {stats.map((stat, index) => (
-          <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
-                </div>
-                <stat.icon className={`w-8 h-8 ${stat.color}`} />
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {/* Welcome Card for New Users */}
+      <Card className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+        <CardContent className="p-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <Upload className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Welcome to ProfEchoX!</h3>
+              <p className="text-gray-600">Start by recording or uploading your first lecture to generate AI-powered learning materials.</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Navigation Tabs */}
       <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg mb-6 w-fit">
@@ -82,51 +72,13 @@ const FacultyDashboard = () => {
               </CardTitle>
               <CardDescription>Track student engagement and performance</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <h4 className="font-medium">Recent Lecture Performance</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm">Data Structures - Lecture 5</span>
-                      <div className="flex items-center gap-2">
-                        <Progress value={85} className="w-20" />
-                        <span className="text-sm font-medium">85%</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm">Algorithms - Lecture 3</span>
-                      <div className="flex items-center gap-2">
-                        <Progress value={92} className="w-20" />
-                        <span className="text-sm font-medium">92%</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm">Database Systems - Lecture 7</span>
-                      <div className="flex items-center gap-2">
-                        <Progress value={78} className="w-20" />
-                        <span className="text-sm font-medium">78%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="font-medium">Student Engagement</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-sm">Flashcards Viewed</span>
-                      <span className="text-sm font-medium">1,247</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-sm">Quizzes Completed</span>
-                      <span className="text-sm font-medium">423</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-sm">Study Materials Downloaded</span>
-                      <span className="text-sm font-medium">189</span>
-                    </div>
-                  </div>
-                </div>
+            <CardContent className="py-12">
+              <div className="text-center">
+                <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No Data Yet</h3>
+                <p className="text-gray-500 mb-4">
+                  Analytics will appear here once you start uploading lectures and students begin engaging with your content.
+                </p>
               </div>
             </CardContent>
           </Card>
