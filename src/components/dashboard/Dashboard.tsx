@@ -1,18 +1,23 @@
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LogOut, Menu, X } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 import FacultyDashboard from './FacultyDashboard';
 import StudentDashboard from './StudentDashboard';
 import AdminDashboard from './AdminDashboard';
+import { useState } from 'react';
 
 interface DashboardProps {
   user: { role: 'faculty' | 'student' | 'admin'; name: string };
-  onLogout: () => void;
 }
 
-const Dashboard = ({ user, onLogout }: DashboardProps) => {
+const Dashboard = ({ user }: DashboardProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+  };
 
   const renderDashboard = () => {
     switch (user.role) {
@@ -58,7 +63,7 @@ const Dashboard = ({ user, onLogout }: DashboardProps) => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="flex items-center gap-2"
               >
                 <LogOut className="w-4 h-4" />

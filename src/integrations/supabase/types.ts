@@ -14,7 +14,166 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      lecture_materials: {
+        Row: {
+          content: Json
+          created_at: string | null
+          id: string
+          lecture_id: string | null
+          type: string | null
+        }
+        Insert: {
+          content: Json
+          created_at?: string | null
+          id?: string
+          lecture_id?: string | null
+          type?: string | null
+        }
+        Update: {
+          content?: Json
+          created_at?: string | null
+          id?: string
+          lecture_id?: string | null
+          type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lecture_materials_lecture_id_fkey"
+            columns: ["lecture_id"]
+            isOneToOne: false
+            referencedRelation: "lectures"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lectures: {
+        Row: {
+          audio_url: string | null
+          created_at: string | null
+          faculty_id: string | null
+          id: string
+          title: string
+          transcript: string | null
+        }
+        Insert: {
+          audio_url?: string | null
+          created_at?: string | null
+          faculty_id?: string | null
+          id?: string
+          title: string
+          transcript?: string | null
+        }
+        Update: {
+          audio_url?: string | null
+          created_at?: string | null
+          faculty_id?: string | null
+          id?: string
+          title?: string
+          transcript?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lectures_faculty_id_fkey"
+            columns: ["faculty_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          id: string
+          message: string
+          sent_at: string | null
+          target_role: string | null
+          title: string
+        }
+        Insert: {
+          id?: string
+          message: string
+          sent_at?: string | null
+          target_role?: string | null
+          title: string
+        }
+        Update: {
+          id?: string
+          message?: string
+          sent_at?: string | null
+          target_role?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          department: string | null
+          full_name: string | null
+          id: string
+          role: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          department?: string | null
+          full_name?: string | null
+          id: string
+          role?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          department?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
+        }
+        Relationships: []
+      }
+      quiz_results: {
+        Row: {
+          answers: Json | null
+          id: string
+          quiz_id: string | null
+          score: number | null
+          student_id: string | null
+          taken_at: string | null
+        }
+        Insert: {
+          answers?: Json | null
+          id?: string
+          quiz_id?: string | null
+          score?: number | null
+          student_id?: string | null
+          taken_at?: string | null
+        }
+        Update: {
+          answers?: Json | null
+          id?: string
+          quiz_id?: string | null
+          score?: number | null
+          student_id?: string | null
+          taken_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_results_quiz_id_fkey"
+            columns: ["quiz_id"]
+            isOneToOne: false
+            referencedRelation: "lecture_materials"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quiz_results_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
