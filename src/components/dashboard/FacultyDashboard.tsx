@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mic, Brain, BarChart3, Upload, FileText } from 'lucide-react';
+import { Mic, Brain, BarChart3, Upload, FileText, Users, BookOpen, TrendingUp } from 'lucide-react';
 import AudioRecorder from '@/components/faculty/AudioRecorder';
 import ContentGenerator from '@/components/faculty/ContentGenerator';
 
@@ -64,24 +64,62 @@ const FacultyDashboard = () => {
         {activeTab === 'record' && <AudioRecorder />}
         {activeTab === 'generate' && <ContentGenerator />}
         {activeTab === 'analytics' && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="w-5 h-5" />
-                Student Analytics
-              </CardTitle>
-              <CardDescription>Track student engagement and performance</CardDescription>
-            </CardHeader>
-            <CardContent className="py-12">
-              <div className="text-center">
-                <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No Data Yet</h3>
-                <p className="text-gray-500 mb-4">
-                  Analytics will appear here once you start uploading lectures and students begin engaging with your content.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="space-y-6">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                  <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+                  <p className="text-sm text-gray-600">Total Lectures</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <Users className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                  <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+                  <p className="text-sm text-gray-600">Active Students</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <Brain className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                  <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+                  <p className="text-sm text-gray-600">Content Generated</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <TrendingUp className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+                  <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+                  <p className="text-sm text-gray-600">Engagement Rate</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Student Analytics */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5" />
+                  Student Analytics
+                </CardTitle>
+                <CardDescription>Track student engagement and performance</CardDescription>
+              </CardHeader>
+              <CardContent className="py-12">
+                <div className="text-center">
+                  <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No Data Yet</h3>
+                  <p className="text-gray-500 mb-4">
+                    Analytics will appear here once you start uploading lectures and students begin engaging with your content.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
       </div>
     </div>

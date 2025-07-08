@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, BookOpen, TrendingUp, Activity, Settings, Shield } from 'lucide-react';
+import { Users, BookOpen, TrendingUp, Activity, Settings, Shield, Server, Database } from 'lucide-react';
 
 const AdminDashboard = () => {
   return (
@@ -24,6 +24,41 @@ const AdminDashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      {/* System Overview Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <Card>
+          <CardContent className="p-6 text-center">
+            <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+            <p className="text-sm text-gray-600">Total Users</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6 text-center">
+            <BookOpen className="w-12 h-12 text-green-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+            <p className="text-sm text-gray-600">Total Lectures</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6 text-center">
+            <Server className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+            <p className="text-sm text-gray-600">API Calls Today</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6 text-center">
+            <Database className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+            <p className="text-sm text-gray-600">Storage Used</p>
+          </CardContent>
+        </Card>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* User Management - Empty State */}
@@ -67,7 +102,7 @@ const AdminDashboard = () => {
         </Card>
       </div>
 
-      {/* Activity Feed - Empty State */}
+      {/* Recent Activity - Empty State */}
       <Card className="mb-8">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -87,29 +122,29 @@ const AdminDashboard = () => {
         </CardContent>
       </Card>
 
-      {/* Quick Stats - Clean State */}
+      {/* Platform Health Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardContent className="p-6 text-center">
-            <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <div className="text-2xl font-bold text-gray-900 mb-1">0</div>
-            <p className="text-sm text-gray-600">Total Lectures</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardContent className="p-6 text-center">
-            <Users className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <div className="text-2xl font-bold text-gray-900 mb-1">0</div>
-            <p className="text-sm text-gray-600">Active Users</p>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardContent className="p-6 text-center">
-            <Settings className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <div className="text-2xl font-bold text-gray-900 mb-1">Ready</div>
+            <Settings className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-green-600 mb-1">Ready</div>
             <p className="text-sm text-gray-600">System Status</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6 text-center">
+            <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-green-600 mb-1">Secure</div>
+            <p className="text-sm text-gray-600">Security Status</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-6 text-center">
+            <Activity className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+            <div className="text-2xl font-bold text-gray-900 mb-1">-</div>
+            <p className="text-sm text-gray-600">Uptime</p>
           </CardContent>
         </Card>
       </div>

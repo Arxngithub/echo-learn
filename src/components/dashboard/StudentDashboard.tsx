@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Brain, HelpCircle, Calendar, GraduationCap } from 'lucide-react';
+import { BookOpen, Brain, HelpCircle, Calendar, GraduationCap, Award, Clock, Target } from 'lucide-react';
 import FlashcardViewer from '@/components/student/FlashcardViewer';
 import QuizInterface from '@/components/student/QuizInterface';
 import StudyMaterials from '@/components/student/StudyMaterials';
@@ -43,6 +43,41 @@ const StudentDashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Progress Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <Card>
+          <CardContent className="p-4 text-center">
+            <Award className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-900">-</div>
+            <p className="text-xs text-gray-600">Quizzes Completed</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4 text-center">
+            <Brain className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-900">-</div>
+            <p className="text-xs text-gray-600">Flashcards Studied</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4 text-center">
+            <Clock className="w-8 h-8 text-green-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-900">-</div>
+            <p className="text-xs text-gray-600">Study Hours</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="p-4 text-center">
+            <Target className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-900">-</div>
+            <p className="text-xs text-gray-600">Average Score</p>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
