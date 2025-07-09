@@ -6,11 +6,16 @@ import { toast } from '@/hooks/use-toast';
 interface LectureMaterial {
   id: string;
   lecture_id: string;
-  type: 'summary' | 'notes' | 'flashcards' | 'quiz';
+  type: string;
   title: string;
   content: any;
   created_at: string;
   updated_at: string;
+  lectures?: {
+    title: string;
+    subject: string;
+    topic: string;
+  };
 }
 
 export const useLectureMaterials = (lectureId?: string) => {
