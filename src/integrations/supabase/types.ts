@@ -20,21 +20,27 @@ export type Database = {
           created_at: string | null
           id: string
           lecture_id: string | null
+          title: string | null
           type: string | null
+          updated_at: string | null
         }
         Insert: {
           content: Json
           created_at?: string | null
           id?: string
           lecture_id?: string | null
+          title?: string | null
           type?: string | null
+          updated_at?: string | null
         }
         Update: {
           content?: Json
           created_at?: string | null
           id?: string
           lecture_id?: string | null
+          title?: string | null
           type?: string | null
+          updated_at?: string | null
         }
         Relationships: [
           {
@@ -50,26 +56,44 @@ export type Database = {
         Row: {
           audio_url: string | null
           created_at: string | null
+          description: string | null
+          duration: number | null
           faculty_id: string | null
           id: string
+          processing_status: string | null
+          subject: string | null
           title: string
+          topic: string | null
           transcript: string | null
+          updated_at: string | null
         }
         Insert: {
           audio_url?: string | null
           created_at?: string | null
+          description?: string | null
+          duration?: number | null
           faculty_id?: string | null
           id?: string
+          processing_status?: string | null
+          subject?: string | null
           title: string
+          topic?: string | null
           transcript?: string | null
+          updated_at?: string | null
         }
         Update: {
           audio_url?: string | null
           created_at?: string | null
+          description?: string | null
+          duration?: number | null
           faculty_id?: string | null
           id?: string
+          processing_status?: string | null
+          subject?: string | null
           title?: string
+          topic?: string | null
           transcript?: string | null
+          updated_at?: string | null
         }
         Relationships: [
           {
